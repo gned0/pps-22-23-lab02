@@ -1,4 +1,4 @@
-package u02
+package u02.exercises
 
 object ex3a extends App {
 
