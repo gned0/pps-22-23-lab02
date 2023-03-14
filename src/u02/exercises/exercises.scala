@@ -109,16 +109,15 @@ object exercises extends App{
 
   import Shape.*
   println("EXERCISE 7")
-  println()
   println("Expected: 5.65, actual: " + perimeter(Triangle(Point2D(0, 0), Point2D(1, 1), Point2D(2, 2))))
   println("Expected: 12.56, actual: " + perimeter(Circle(Point2D(0, 0), 2)))
   println("Expected: 16, actual: " + perimeter(Square(Point2D(0, 0), 4)))
   println("Expected: true, actual: " + contains(Triangle(Point2D(0, 0), Point2D(0, 4), Point2D(4, 0)), Point2D(2, 2)))
   println("Expected: false, actual: " + contains(Circle(Point2D(0, 0), 2), Point2D(4, 4)))
   println("Expected: true, actual: " + contains(Square(Point2D(0, 0), 2), Point2D(1, 1)))
+  println()
 
   // exercise 8
-
   enum Option[A]:
     case Some(a: A)
     case None()
@@ -136,7 +135,6 @@ object exercises extends App{
 
   import Option.*
   println("EXERCISE 8, expected output: Some(5), None(), None()")
-  println()
   println("Expected: Some(5), actual: " + filter(Some(5))(_ > 2))
   println("Expected: None(), actual: " + filter(Some(5))(_ > 8))
   println("Expected: None(), actual: " + filter(None[Int]())(_ > 2))
