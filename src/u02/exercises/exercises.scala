@@ -62,7 +62,7 @@ object exercises extends App{
 
   println("EXERCISE 5")
   println("Expected: 9, actual: " + compose(_ - 1, _ * 2)(5))
-  println("Expected: 9, actual: " + println(composeGeneric[Int, Int, Int](_ - 1, _ * 2)(5)))
+  println("Expected: 9, actual: " + composeGeneric[Int, Int, Int](_ - 1, _ * 2)(5))
   println()
 
   // exercise 6
@@ -86,12 +86,16 @@ object exercises extends App{
   object Shape:
     def distance(a: Point2D, b: Point2D): Double =
       sqrt(pow(a.x - b.x, 2) + pow(a.y - b.y, 2))
+
+    private def triangleArea(p1: Point2D, p2: Point2D, p3: Point2D): Double =
+      0.5 * abs((p2.x - p1.x) * (p3.y - p1.y) - (p3.x - p1.x) * (p2.y - p1.y))
+
     def pointInTriangle(p: Point2D, a: Point2D, b: Point2D, c: Point2D): Boolean =
       // Calculate the areas of the three triangles formed by the point and each edge of the triangle
-      val area1 = 0.5 * math.abs((b.x - a.x) * (p.y - a.y) - (p.x - a.x) * (b.y - a.y))
-      val area2 = 0.5 * math.abs((c.x - b.x) * (p.y - b.y) - (p.x - b.x) * (c.y - b.y))
-      val area3 = 0.5 * math.abs((a.x - c.x) * (p.y - c.y) - (p.x - c.x) * (a.y - c.y))
-      val totalArea = 0.5 * math.abs((b.x - a.x) * (c.y - a.y) - (c.x - a.x) * (b.y - a.y))
+      val area1 = triangleArea(p, a, b)
+      val area2 = triangleArea(p, b, c)
+      val area3 = triangleArea(p, c, a)
+      val totalArea = triangleArea(a, b, c)
       // Check if the sum of the areas of the three triangles equals the total area of the triangle
       area1 + area2 + area3 == totalArea
     def perimeter(s: Shape): Double = s match
