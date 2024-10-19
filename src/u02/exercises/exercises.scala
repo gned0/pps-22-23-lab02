@@ -26,7 +26,7 @@ object exercises extends App{
     f => s => !f(s)
 
   def negMethod(f: String => Boolean): String => Boolean =
-    (s: String) => !f(s)
+    s => !f(s)
 
   val empty: String => Boolean = _ == ""
   val notEmpty = negLambda(empty)
@@ -58,21 +58,18 @@ object exercises extends App{
   def compose(f: Int => Int, g: Int => Int): Int => Int =
     x => f(g(x))
 
+  def composeGeneric[A, B, C](f: B => C, g: A => B): A => C = x => f(g(x))
+
   println("EXERCISE 5")
   println("Expected: 9, actual: " + compose(_ - 1, _ * 2)(5))
+  println("Expected: 9, actual: " + println(composeGeneric[Int, Int, Int](_ - 1, _ * 2)(5)))
   println()
 
   // exercise 6
   @tailrec
   def gcd(a: Int, b: Int): Int = (a, b) match
-    case (a, b) if a == 0 => b
-    case (a, b) if b == 0 => a
-    case (a, b) if a > b => (a, b) match
-      case (a, b) if a % b == 0 => b
-      case (a, b) => gcd(b, a % b)
-    case (a, b) if a < b => (a, b) match
-      case (a, b) if b % a == 0 => a
-      case (a, b) => gcd(a, b % a)
+    case (_, 0) => a
+    case _ => gcd(b, a % b)
 
   println("EXERCISE 6")
   println("Expected output: 4, actual: " + gcd(8, 12))
