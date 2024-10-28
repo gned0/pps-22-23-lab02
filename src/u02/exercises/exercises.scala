@@ -135,7 +135,7 @@ object exercises extends App{
       case _ => default
 
   import Option.*
-  println("EXERCISE 8, expected output: Some(5), None(), None()")
+  println("EXERCISE 8")
   println("Expected: Some(5), actual: " + filter(Some(5))(_ > 2))
   println("Expected: None(), actual: " + filter(Some(5))(_ > 8))
   println("Expected: None(), actual: " + filter(None[Int]())(_ > 2))
